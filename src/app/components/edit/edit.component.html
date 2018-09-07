@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+          <label class="col-md-4">Variable Name</label>
+          <input type="text" class="form-control" name="v_name" formControlName="v_name" #v_name [(ngModel)] = "question.v_name" />
+        </div>
+        <div *ngIf="angForm.controls['v_name'].invalid && (angForm.controls['v_name'].dirty || angForm.controls['v_name'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['v_name'].errors.required">
+            Variable Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Question Text</label>
+          <input type="text" class="form-control" name="q_text" formControlName="q_text" #q_text [(ngModel)] = "question.q_text" />
+        </div>
+        <div *ngIf="angForm.controls['q_text'].invalid && (angForm.controls['q_text'].dirty || angForm.controls['q_text'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['q_text'].errors.required">
+            Question Text is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Question Title</label>
+          <input type="text" class="form-control" name="q_title" formControlName="q_title" #q_title [(ngModel)] = "question.q_title" />
+        </div>
+        <div *ngIf="angForm.controls['q_title'].invalid && (angForm.controls['q_title'].dirty || angForm.controls['q_title'].touched)"
+          class="alert alert-danger">
+          <div *ngIf="angForm.controls['q_title'].errors.required">
+            Question Title is required.
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4">Answer List</label>
+            <textarea class="form-control" name="a_list" formControlName="a_list" #a_list [(ngModel)] = "question.a_list" ></textarea>
+          </div>
+          <div *ngIf="angForm.controls['a_list'].invalid && (angForm.controls['a_list'].dirty || angForm.controls['a_list'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="angForm.controls['a_list'].errors.required">
+              Answer List is required.
+            </div>
+          </div>
+        <div class="form-group">
+          <button (click)="updateQuestion(v_name.value, q_text.value, q_title.value, a_list.value)" [disabled]="angForm.invalid" class="btn btn-primary">Update Question</button>
+        </div>
+    </form>
+  </div>
+</div>
